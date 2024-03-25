@@ -1,6 +1,7 @@
 ---
 title: "**EL CLIMA ESTA EN COCHA**"
 author: "*Nihel Ruiz A*"
+
 date: "2024-03-25"
 
 output: html_document
@@ -19,17 +20,25 @@ En este Documento observara el monitoreo de las estaciones meteorologicas de SEN
 
 ```{r pressure, echo=FALSE,include=FALSE}
 library(pacman)
-pacman::p_load(terra,tidyverse,openxlsx,leaflet)
+pacman::p_load(terra,tidyverse,openxlsx,leaflet,DT,kableExtra)
 a<-rast('/home/nihelruiz/Documents/2024/sissa_30/SPI01-PERSIANN_202002.tif')
 b<-read.csv('/home/nihelruiz/Downloads/Templo Misicuni.csv')
+b[,1]<-as.character(b[,1])
+b[,2]<-round(b[,2],1)
+b[,3]<-round(b[,3],1)
+b[,4]<-round(b[,4],1)
+b[,5]<-round(b[,5],1)
+b[,6]<-round(b[,6],1)
+b[,7]<-round(b[,7],1)
 dirt<-dir('/home/nihelruiz/Documents/2024/out/') 
 est<-read.csv('/home/nihelruiz/Documents/2024/estaciones_cbba.csv')
+
 leaf<-leaflet(est) %>% addTiles %>% addMarkers(lng=~longitud,lat=~latitud)
 ```
 
 
 ```{r ,echo=FALSE}
-tail(b)
+tail(b) %>% kbl() %>% kable_paper(full_width=F)
 leaf
 ```
 
