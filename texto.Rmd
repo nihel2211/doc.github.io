@@ -28,6 +28,9 @@ plot(pressure)
 library(terra)
 a<-rast('/home/nihelruiz/Documents/2024/sissa_30/SPI01-PERSIANN_202002.tif')
 plot(a)
+library(leaflet)
+library(tidyverse)
+leaflet() %>% addTiles() 
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
